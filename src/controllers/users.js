@@ -24,6 +24,7 @@ module.exports = {
   get: async (req, res, next) => {
     try {
       const users = await userSrv.getUsers('*');
+      logger.warn(`GET users`);
       res.status(200).json({
         success: 'ok',
         items: users,

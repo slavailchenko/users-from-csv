@@ -1,8 +1,13 @@
 const express = require('express');
+const cls = require('cls-hooked');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('./services/logger');
+const traceIdBinder = require('./middleware/cls.hooked.middleware');
+
+const ns = cls.createNamespace('sample');
+app.use(traceIdBinder(ns));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
